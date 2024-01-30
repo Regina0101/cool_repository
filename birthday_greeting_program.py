@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 users = [
-    {"name": "John Doe", "birthday": "1985.02.23"},
+    {"name": "John Doe", "birthday": "1985.01.23"},
     {"name": "Jane Smith", "birthday": "1990.02.5"}
 ]
 
@@ -13,6 +13,11 @@ def get_upcoming_birthdays(users):
         birthday_this_year = datetime.strptime(user["birthday"], "%Y.%m.%d").date()
         '''Сheck how many days until your birthday'''
         users_birthday = datetime(today.year, birthday_this_year.month, birthday_this_year.day).date()
+        if users_birthday < today:
+            '''If the birthday has already passed in the current year'''
+            users_birthday = datetime(today.year + 1, birthday_this_year.month, birthday_this_year.day).date()
+
+
         days_left = (users_birthday - today).days
 
         if days_left < 7:
