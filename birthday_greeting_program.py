@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 users = [
-    {"name": "John Doe", "birthday": "1985.01.23"},
+    {"name": "John Doe", "birthday": "1985.01.01"},
     {"name": "Jane Smith", "birthday": "1990.02.5"}
 ]
 
