@@ -1,16 +1,14 @@
 import random
 
-def get_numbers_ticket():
-    num_list = set()
+def get_numbers_ticket(minimum, maximum, quantity):
+    if not (1 <= minimum <= maximum <= 1000) or not (1 <= quantity <= maximum - minimum + 1):
+        return [], []
 
-    for _ in range(5):
-        random_number = random.randint(1, 1000)
-        num_list.add(random_number)
+    num_list = sorted(random.sample(range(minimum, maximum + 1), quantity))
+    winners = random.sample(num_list, 3)
 
-    return num_list
+    return num_list, winners
 
-result = get_numbers_ticket()
-
-result_list = list(result)
-two_random_numbers = random.sample(result_list, 3)
-print(two_random_numbers, result)
+result, winners = get_numbers_ticket(1, 1000, 5)
+print("Всі числа:", result)
+print("Переможці:", winners)

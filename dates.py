@@ -1,3 +1,4 @@
+# Option 1
 from datetime import datetime
 
 def get_days_from_today(date):
@@ -16,3 +17,15 @@ def get_days_from_today(date):
 
 
 get_days_from_today(datetime.today())
+
+# Option2
+from datetime import datetime
+
+def get_days_from_today(date_str):
+    user_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+    today_date = datetime.today().date()
+    duration_days = (user_date - today_date).days
+    return duration_days
+
+result = get_days_from_today('2022-12-22')
+print(result)
