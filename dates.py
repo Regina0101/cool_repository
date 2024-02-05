@@ -22,10 +22,17 @@
 from datetime import datetime
 
 def get_days_from_today(date_str):
-    user_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+    try:
+        user_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+    except ValueError:
+        try:
+            user_date = datetime.strptime(date_str, '%Y').date().replace(day=1, month=1)
+        except ValueError:
+            return "Invalid date format. Please provide date in the format 'YYYY' or 'YYYY-MM-DD'."
+
     today_date = datetime.today().date()
     duration_days = (today_date - user_date).days
     return duration_days
 
-result = get_days_from_today('2022-12-22')
+result = get_days_from_today('2012')
 print(result)
