@@ -5,10 +5,8 @@ def get_numbers_ticket(minimum, maximum, quantity):
         return []
 
     num_list = sorted(random.sample(range(minimum, maximum + 1), quantity))
-    winners = random.sample(num_list, min(3, len(num_list)))
 
-    return num_list, winners
+    return num_list
 
-result, winners = get_numbers_ticket(1, 1000, 5)
-print("Всі числа:", result)
-print("Переможці:", winners)
+result = get_numbers_ticket(1, 1000, 5)
+print("Переможці", result)

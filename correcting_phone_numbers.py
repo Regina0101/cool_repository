@@ -10,22 +10,16 @@ users_phones = [
 ]
 
 def normalize_phone(phone_number):
-    digit_and_space_phone = re.sub(r'[^+\d]', '', phone_number)
+    digit_phone = re.sub(r'\D', '', phone_number)
 
-    if len(digit_and_space_phone) == 13 and re.match(r'^\+380', digit_and_space_phone):
-        return digit_and_space_phone
-    elif len(digit_and_space_phone) == 10 and re.match(r'^\d{10}', digit_and_space_phone):
-        if digit_and_space_phone.startswith('0'):
-            return "+38" + digit_and_space_phone
-        else:
-            return "+380" + digit_and_space_phone[3:]
-    elif len(digit_and_space_phone) < 10:
-        return "Number is too short"
-    elif len(digit_and_space_phone) > 13:
-        return "Number is too long"
+    if len(digit_phone) == 10 and digit_phone.startswith('0'):
+        return "+38" + digit_phone
+    elif len(digit_phone) == 10:
+        return "+380" + digit_phone
+    elif len(digit_phone) == 12 and digit_phone.startswith('380'):
+        return "+" + digit_phone
     else:
-        modified_number = "+380" + re.sub(r"\D", "", digit_and_space_phone)[3:]
-        return modified_number
+        return "Invalid phone number"
 
 for phone_number in users_phones:
     result = normalize_phone(phone_number)
