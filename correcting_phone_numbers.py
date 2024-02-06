@@ -6,6 +6,7 @@ users_phones = [
     "432 11 222 22 22",
     "(050)8889900",
     "38050-111-22-22",
+    "+123456789012",
     "38050 111 22 11   "
 ]
 
@@ -16,10 +17,10 @@ def normalize_phone(phone_number):
         return "+38" + digit_phone
     elif len(digit_phone) == 10:
         return "+380" + digit_phone
-    elif len(digit_phone) == 12 and digit_phone.startswith('380'):
+    elif len(digit_phone) == 12 or digit_phone.startswith('380'):
         return "+" + digit_phone
     else:
-        return "Invalid phone number"
+        return digit_phone
 
 for phone_number in users_phones:
     result = normalize_phone(phone_number)
